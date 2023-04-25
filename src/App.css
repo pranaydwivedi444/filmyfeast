@@ -1,4 +1,18 @@
 .app {
   min-height: 100vh;
   background: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
+  padding-top: 7.5rem;
+  padding-bottom: 8rem;
+}
+
+@media (max-width: 1000px) {
+  .app {
+    padding-top: 5rem;
+  }
+}
+
+@media (max-width: 300px) {
+  .app {
+    padding-top: 3rem;
+  }
 }

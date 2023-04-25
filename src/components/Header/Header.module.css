@@ -17,10 +17,13 @@
   box-shadow: 1px 1px 5px black;
   padding: 1rem;
   z-index: 1000px;
-  cursor: pointer;
+
   text-transform: uppercase;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+}
+.header span {
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {

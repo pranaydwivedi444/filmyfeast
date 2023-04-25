@@ -1,0 +1,18 @@
+.content__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* gap: 0.3rem; */
+  justify-content: space-around;
+}
+
+.page__title {
+  text-align: center;
+  text-transform: uppercase;
+  color: whitesmoke;
+  text-shadow: 0px 0px 5px rgb(0, 0, 0), 0px 0px 10px rgb(3, 3, 3),
+    0px 0px 15px rgb(8, 8, 8), 0px 0px 20px rgba(73, 255, 24, 1),
+    0px 0px 30px rgba(73, 255, 24, 1), 0px 0px 40px rgba(73, 255, 24, 1),
+    0px 0px 55px rgba(73, 255, 24, 1), 0px 0px 75px rgba(73, 255, 24, 1);
+  font-size: 3rem;
+}
