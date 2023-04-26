@@ -2,8 +2,15 @@ import { Chip } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-function Genres({ type, genres, setGenres, setNumOfPages, setPage }) {
-  const [selectedGenres, setSelectedGenres] = useState([]);
+function Genres({
+  type,
+  genres,
+  setGenres,
+  setPage,
+  selectedGenres,
+  setSelectedGenres,
+}) {
+  //   const [selectedGenres, setSelectedGenres] = useState([]);
   //   let dataAPI;
   console.log(type);
 

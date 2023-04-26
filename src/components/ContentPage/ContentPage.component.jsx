@@ -12,7 +12,9 @@ function ContentPage({
   gen = false,
   genres,
   setGenres,
-  setNumOfPages,
+
+  selectedGenres,
+  setSelectedGenres,
 }) {
   return (
     <>
@@ -22,8 +24,9 @@ function ContentPage({
           type={pageTitle == "Movies" ? "movie" : "tv"}
           genres={genres}
           setGenres={setGenres}
-          setNumOfPages={setNumOfPages}
           setPage={setPage}
+          selectedGenres={selectedGenres}
+          setSelectedGenres={setSelectedGenres}
         />
       )}
       <div className="content__container">
