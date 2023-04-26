@@ -16,6 +16,14 @@
 .content__card:hover {
   background-color: white;
   color: black;
+  transform: scale(1.05);
+}
+.content__card:hover .badge__container {
+  display: unset;
+}
+.badge__container {
+  display: none;
+  text-align: end;
 }
 .content__card img {
   width: 100%;

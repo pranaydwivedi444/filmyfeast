@@ -6,5 +6,5 @@ export const StyledBottomNavigation = styled(BottomNavigation)({
   position: "fixed",
   bottom: 0,
   backgroundColor: "#1e7898",
-  zIndex: 100,
+  zIndex: 1000,
 });

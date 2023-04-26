@@ -1,3 +1,4 @@
+import { Badge } from "@mui/material";
 import React from "react";
 import { img_300, unavailable } from "../../Config/Config.js";
 import "./ContentCard.style.css";
@@ -5,6 +6,9 @@ function ContentCard(props) {
   const { id, poster, type, title, date, vote } = props;
   return (
     <div className="content__card">
+      <div className="badge__container">
+        <Badge badgeContent={vote} color={vote > 6 ? "primary" : "secondary"} />
+      </div>
       <img
         className="content__poster"
         src={poster ? `${img_300}/${poster}` : unavailable}
