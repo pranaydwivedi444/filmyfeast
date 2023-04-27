@@ -1,0 +1,12 @@
+.searchbox__container {
+  display: flex;
+  justify-content: space-around;
+  gap: 0 1rem;
+}
+.search__noresults {
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: aliceblue;
+  text-shadow: 1px 1px 1px black;
+}
