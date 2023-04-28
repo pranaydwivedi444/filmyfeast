@@ -2,7 +2,7 @@ import React from "react";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import CustomPagination from "../../Pagination/Pagination.component";
+
 import ContentPage from "../../ContentPage/ContentPage.component";
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
@@ -34,6 +34,7 @@ function SearchPage() {
   const [numOfPages, setNumOfPages] = useState(10);
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([]);
+  const [searched, setSearched] = useState(false);
   async function fetchSearch() {
     if (searchValue == "") return;
     const { data } = await axios.get(
@@ -75,6 +76,7 @@ function SearchPage() {
           onKeyPress={(event) => {
             if (event.key === "Enter") {
               fetchSearch();
+              setSearched(true);
             }
           }}
           margin="normal"
@@ -88,7 +90,10 @@ function SearchPage() {
           variant="contained"
           size="medium"
           sx={{ margin: "0.8rem" }}
-          onClick={() => fetchSearch()}
+          onClick={() => {
+            fetchSearch();
+            setSearched(true);
+          }}
         >
           <SearchIcon fontSize="large" />
         </Button>
@@ -97,20 +102,25 @@ function SearchPage() {
         <LabTabs type={type} setType={setType} />
       </ThemeProvider>
 
-      {(content.length > 0 && (
-        <ContentPage
-          content={content}
-          pageTitle={type ? "TV" : "Movies"}
-          setPage={setPage}
-          numberOfPages={numOfPages}
-          setNumOfPages={setNumOfPages}
-          gen={false}
-        />
-      )) || (
-        <h4 className="search__noresults">
-          {" "}
-          {`NO ${type ? "TV SERIES" : "MOVIES"} found `}
-        </h4>
+      {searchValue ? (
+        content.length > 0 ? (
+          <ContentPage
+            content={content}
+            pageTitle={type ? "TV" : "Movies"}
+            setPage={setPage}
+            numberOfPages={numOfPages}
+            setNumOfPages={setNumOfPages}
+            gen={false}
+          />
+        ) : (
+          searched && (
+            <h4 className="search__noresults">{`NO ${
+              type ? "TV SERIES" : "MOVIES"
+            } found `}</h4>
+          )
+        )
+      ) : (
+        <h4 className="search__noresults">{`START SEARCHING `}</h4>
       )}
     </>
   );

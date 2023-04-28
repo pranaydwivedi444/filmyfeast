@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { FavContext } from "../../../Contexts/Fav.context";
+import ContentPage from "../../ContentPage/ContentPage.component";
 
 export default function Favorite() {
+  const { fav } = useContext(FavContext);
+  const [content, setContent] = useState(fav);
+  const [page, setPage] = useState(1);
+
+  const [numOfPages, setNumOfPages] = useState(1);
+  useEffect(() => {
+    const nPages = Math.ceil(fav.length / 10);
+    if (!nPages) return;
+    setNumOfPages(nPages);
+    const updatedContent = fav.slice(page * 10 - 10, 10);
+    setContent(updatedContent);
+
+    //30 1-10,2-20,3-30 slice(page*10-10,10)
+  }, []);
+
   return (
-    <div>
-      <span>
-        {" "}
-        <h1>Trending Movies and TV Shows</h1>
-        <p>Here are some of the most popular movies and TV shows right now:</p>
-        <ul>
-          <li>Movie 1</li>
-          <li>Movie 2</li>
-          <li>TV Show 1</li>
-          <li>TV Show 2</li>
-        </ul>{" "}
-      </span>
-    </div>
+    <>
+      <ContentPage
+        content={content}
+        pageTitle="FAVORITES 💛"
+        setPage={setPage}
+      />
+      {content.length === 0 && (
+        <h4 className="search__noresults"> NO FAVORITES FOUND </h4>
+      )}
+    </>
   );
 }
