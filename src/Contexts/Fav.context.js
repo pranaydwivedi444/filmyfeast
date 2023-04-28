@@ -7,9 +7,17 @@ export const FavContext = createContext({
 
 export const FavProvider = (props) => {
   const [fav, setFav] = useState([]);
+  function addFavorites(newFav) {
+    setFav((fav) => [...fav, newFav]);
+  }
+  function removeFav(rFav) {
+    const updatedFav = fav.filter((f) => f.id !== rFav.id);
+    setFav(updatedFav);
+  }
   const value = {
     fav,
-    setFav,
+    addFavorites,
+    removeFav,
   };
   return (
     <FavContext.Provider value={value}>{props.children}</FavContext.Provider>

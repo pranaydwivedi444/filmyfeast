@@ -1,39 +1,80 @@
-import { Close } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Modal from "../UI/Modal/Modal.component";
 import "./ContentModal.styles.css";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { img_500, unavailable } from "../../Config/Config";
+import axios from "axios";
+import { FavContext } from "../../Contexts/Fav.context";
 
-function ContentModal() {
+function ContentModal({ close, content, type }) {
+  const {
+    title,
+    overview,
+    release_date,
+
+    id,
+    name,
+    first_air_date,
+    poster_path,
+  } = content;
+  const { fav, addFavorites, removeFav } = useContext(FavContext);
+  async function fetchData() {
+    try {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      );
+      console.log(response.data);
+      const trailerResponse = await axios.get(
+        `https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      );
+      //   setTrailer(trailerResponse.data.results[0]?.key);
+      console.log(trailerResponse.data.results[0]?.key);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    // fetchData();
+  }, [content]);
+  //function fav Handler
+  function favHandler() {
+    if (isFav) {
+      removeFav(content);
+      setIsFav(false);
+    } else addFavorites(content);
+  }
+  //check fav
+  const [isFav, setIsFav] = useState(false);
   return (
-    <Modal>
+    <Modal close={close}>
       <div className="ContentModal__container">
         <div className="ContentModal__poster">
           <img
-            src="https://thumbs.dreamstime.com/z/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg"
-            alt=""
+            src={poster_path ? `${img_500}/${poster_path}` : unavailable}
+            alt={title}
             className="ContentModal__image"
           />
         </div>
         <div className="ContentModal__details">
-          <h4 className="ContentModal__Heading">Peter Pan{` (DATE)`}</h4>
-          <div className="ContentModal__description">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-            veritatis aliquid doloribus quasi ex doloremque. Sunt rerum, eos
-            sequi non, doloremque in possimus, consectetur nesciunt delectus
-            quos molestias esse dicta.
-          </div>
-          <div className="ContentModal__carosel">Carosel</div>
+          <h4 className="ContentModal__Heading">{`${title || name} (${
+            release_date ? release_date.slice(0, 4) : first_air_date.slice(0, 4)
+          })`}</h4>
+          <div className="ContentModal__description">{overview}</div>
+          <div className="ContentModal__carosel">{/* {Carosel} */}</div>
           <div className="ContentModal__buttons">
             <Button variant="contained" startIcon={<PlayCircleIcon />}>
               Watch the Trailer
             </Button>
-            <Button variant="contained" endIcon={<FavoriteIcon />}>
-              Add to Favorites
+            <Button
+              variant="contained"
+              endIcon={<FavoriteIcon />}
+              onClick={favHandler}
+            >
+              {isFav ? `Added to Fav` : `Add to Favorites`}
             </Button>
-            <Button variant="contained" color="error">
+            <Button variant="contained" color="error" onClick={close}>
               Close
             </Button>
           </div>

@@ -37,6 +37,7 @@ function Navigation() {
         history("/");
         break;
     }
+    window.scroll(0, 0);
   }, [value, history]);
 
   return (

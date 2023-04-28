@@ -3,9 +3,9 @@ import React from "react";
 import { img_300, unavailable } from "../../Config/Config.js";
 import "./ContentCard.style.css";
 function ContentCard(props) {
-  const { id, poster, type, title, date, vote } = props;
+  const { id, poster, type, title, date, vote, open } = props;
   return (
-    <div className="content__card">
+    <div className="content__card" onClick={open}>
       <div className="badge__container">
         <Badge badgeContent={vote} color={vote > 6 ? "primary" : "secondary"} />
       </div>

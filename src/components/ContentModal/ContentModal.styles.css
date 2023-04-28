@@ -1,7 +1,7 @@
 .ContentModal__container {
   height: 70vh;
   width: 70vw;
-  background-color: gray;
+  background: linear-gradient(to bottom, #3f51b5, #2196f3);
   /* overflow: scroll; */
   display: flex;
   box-sizing: border-box;
@@ -10,22 +10,22 @@
 
 .ContentModal__poster {
   /* flex-basis */
-  width: 70rem;
+  /* width: 70rem; */
   /* border: 2px solid black; */
   margin: 0.8rem;
 }
 .ContentModal__image {
-  width: 100%;
+  width: 20rem;
   height: 100%;
   border-radius: 10px;
   /* flex-basis: 60%; */
 }
 
 .ContentModal__description {
-  box-shadow: 2px 2px 1px black;
+  box-shadow: 2px 2px 2px black;
   /* margin: 0.5rem; */
   padding: 5px;
-  max-height: 30%;
+  height: 30%;
   overflow: scroll;
   scrollbar-width: none;
   color: white;
@@ -39,10 +39,10 @@
 }
 
 .ContentModal__description::-webkit-scrollbar {
-  width: 2px;
+  width: 8px;
 }
 .ContentModal__description ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: grey;
 }
 
 .ContentModal__carosel {

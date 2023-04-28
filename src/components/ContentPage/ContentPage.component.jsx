@@ -18,7 +18,9 @@ function ContentPage({
   setSelectedGenres,
 }) {
   const [contentModalOpen, setContentModalOpen] = useState(false);
-  function openModal() {
+  const [selectedContent, setSelectedContent] = useState({});
+  function openModal(content) {
+    setSelectedContent(content);
     setContentModalOpen(true);
   }
   function closeModal() {
@@ -26,7 +28,13 @@ function ContentPage({
   }
   return (
     <>
-      {contentModalOpen && <ContentModal />}
+      {contentModalOpen && (
+        <ContentModal
+          close={closeModal}
+          content={selectedContent}
+          type={pageTitle == "Movies" ? "movie" : "tv"}
+        />
+      )}
       <h2 className="page__title">{pageTitle}</h2>
       {gen && (
         <Genres
@@ -49,6 +57,7 @@ function ContentPage({
               title={content.title || content.name}
               date={content.first_air_date || content.release_date || "N/A"}
               vote={content.vote_average}
+              open={() => openModal(content)}
             />
           ))}
       </div>
