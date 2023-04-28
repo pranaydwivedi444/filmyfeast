@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const FavContext = createContext({
   fav: [],
@@ -7,6 +7,18 @@ export const FavContext = createContext({
 
 export const FavProvider = (props) => {
   const [fav, setFav] = useState([]);
+  // Load favorites from local storage on mount
+  useEffect(() => {
+    const storedFav = localStorage.getItem("fav");
+    if (storedFav) {
+      setFav(JSON.parse(storedFav));
+    }
+  }, []);
+
+  // Save favorites to local storage whenever the `fav` state changes
+  useEffect(() => {
+    localStorage.setItem("fav", JSON.stringify(fav));
+  }, [fav]);
   function addFavorites(newFav) {
     setFav((fav) => [...fav, newFav]);
   }

@@ -37,13 +37,16 @@ function ContentModal({ close, content, type }) {
   }
   useEffect(() => {
     // fetchData();
+    const checkFav = fav.find((f) => f.id == content.id);
+    if (!checkFav) return;
+    setIsFav(true);
   }, [content]);
   //function fav Handler
   function favHandler() {
     if (isFav) {
       removeFav(content);
-      setIsFav(false);
     } else addFavorites(content);
+    setIsFav(!isFav);
   }
   //check fav
   const [isFav, setIsFav] = useState(false);
