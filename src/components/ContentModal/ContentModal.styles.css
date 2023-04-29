@@ -112,7 +112,7 @@
 
   .ContentModal__image {
     height: 30rem;
-    width: 70rem;
+    max-width: 70rem;
   }
 }
 
