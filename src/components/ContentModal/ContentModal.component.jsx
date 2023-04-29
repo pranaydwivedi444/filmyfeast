@@ -19,6 +19,7 @@ function ContentModal({ close, content, type }) {
     first_air_date,
     poster_path,
   } = content;
+  console.log(content);
   const { fav, addFavorites, removeFav } = useContext(FavContext);
   async function fetchData() {
     try {
@@ -74,6 +75,7 @@ function ContentModal({ close, content, type }) {
               variant="contained"
               endIcon={<FavoriteIcon />}
               onClick={favHandler}
+              color={isFav ? "error" : "primary"}
             >
               {isFav ? `Added to Fav` : `Add to Favorites`}
             </Button>

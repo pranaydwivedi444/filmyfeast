@@ -1,65 +1,120 @@
+/* ///////////////////////////////////////////
+ */
 .ContentModal__container {
   height: 70vh;
   width: 70vw;
-  background: linear-gradient(to bottom, #3f51b5, #2196f3);
-  /* overflow: scroll; */
+  background: linear-gradient(to bottom, #1a1a1a, #000);
   display: flex;
-  box-sizing: border-box;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
 }
 
 .ContentModal__poster {
-  /* flex-basis */
-  /* width: 70rem; */
-  /* border: 2px solid black; */
-  margin: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
 }
+
 .ContentModal__image {
-  width: 20rem;
-  height: 100%;
+  max-width: 100%;
+  max-height: 500px;
   border-radius: 10px;
-  /* flex-basis: 60%; */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.ContentModal__description {
-  box-shadow: 2px 2px 2px black;
-  /* margin: 0.5rem; */
-  padding: 5px;
-  height: 30%;
-  overflow: scroll;
-  scrollbar-width: none;
-  color: white;
-  font-size: 1.5rem;
-  text-shadow: 1px 1px 1px black;
-  margin: 0.8rem;
-  margin-top: 1rem;
-  /* Add a custom scrollbar */
-
-  /* Track */
+.ContentModal__details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
-.ContentModal__description::-webkit-scrollbar {
-  width: 8px;
-}
-.ContentModal__description ::-webkit-scrollbar-track {
-  background: grey;
-}
-
-.ContentModal__carosel {
-  margin-top: 1.5rem;
-}
 .ContentModal__Heading {
   text-align: center;
   font-size: 2rem;
   text-shadow: 1px 1px 1px black;
   color: whitesmoke;
   text-transform: uppercase;
+  margin-bottom: 1rem;
 }
+
+.ContentModal__description {
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.5) rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 1px black;
+  margin-bottom: 2rem;
+}
+
+.ContentModal__description::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ContentModal__description::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ContentModal__description::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 .ContentModal__buttons {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  margin: 0 auto;
-  padding: 0.8rem;
-  /* background-color: #f1f1f1; */
+  margin-bottom: 2rem;
 }
+
+.ContentModal__buttons > button {
+  min-width: 200px;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .ContentModal__container {
+    height: 70vh;
+    width: 70vw;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .ContentModal__poster {
+    margin-right: 2rem;
+    margin-bottom: 0;
+  }
+
+  .ContentModal__details {
+    align-items: center;
+  }
+
+  .ContentModal__description {
+    max-height: 300px;
+    font-size: 1.5rem;
+    margin-right: 2rem;
+  }
+
+  .ContentModal__buttons > button {
+    margin-bottom: 0;
+  }
+
+  .ContentModal__poster {
+    align-self: flex-start;
+  }
+
+  .ContentModal__image {
+    height: 30rem;
+    width: 70rem;
+  }
+}
+
+/* //////////////////////////////////////
+ */
